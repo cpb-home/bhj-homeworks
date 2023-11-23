@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="task.css">
     <link rel="stylesheet" href="../../assets/css/style.css" />
@@ -12,7 +12,7 @@
 <body>
     <header class="header">
         <div class="logo__container">
-          <a href="https://netology.ru/" class="logo__link"></a>
+            <a href="https://netology.ru/" class="logo__link"></a>
         </div>
         <h1 class="header__title">
             Домашнее задание к занятию 1.1 «Возможности JavaScript в браузере». Таймер обратного отсчёта
@@ -20,8 +20,33 @@
     </header>
     <main class="content">
         <div class="card">
+            <label for="select">
+                Выберите сценарий для запуска:
+            </label>
+            <select id="select">
+                <option selected disabled>После выбора элемент заблокируется</option>
+                <option value="junior">Задание с обычным уровнем сложности</option>
+                <option value="middle">Задание с повышенным уровнем сложности # 1</option>
+                <option value="senior">Задание с повышенным уровнем сложности # 2</option>
+            </select>
+        </div>
+        <div class="card">
             <div id="status">
+                <h3>Задание с обычным уровнем сложности (обязательно)</h3>
                 До окончания конкурса осталось секунд: <span id="timer">59</span>
+            </div>
+        </div>
+        <div class="card">
+            <div id="middleStatus">
+                <h3>Задание с повышенным уровнем сложности #1 (не обязательно)</h3>
+                До окончания конкурса осталось времени: <span id="middleTaskTimer">02:00:10</span>
+            </div>
+        </div>
+        <div class="card">
+            <div id="seniorStatus">
+                <h3>Задание с повышенным уровнем сложности #2 (не обязательно)</h3>
+                До окончания конкурса осталось секунд: <span id="seniorTaskTimer">5</span>
+                <a class="link" href="task.js" download target="_blank"></a>
             </div>
         </div>
     </main>    
