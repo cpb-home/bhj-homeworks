@@ -29,6 +29,9 @@ function juniorTaskCountdown() {
         clearInterval(intervalId);
         alert("Вы победили в конкурсе!");
     } else {
+        juniorSpan.style.backgroundColor = 'green';
+        juniorSpan.style.fontSize = '20px';
+        juniorSpan.style.color = 'white';
         juniorCounter--;
         juniorSpan.textContent = juniorCounter;
     }
@@ -58,6 +61,9 @@ function middleTaskCountdown() {
             clearInterval(intervalId);
             alert("Получены неверные значения единиц времени!");
         }
+        middleSpan.style.backgroundColor = 'green';
+        middleSpan.style.fontSize = '20px';
+        middleSpan.style.color = 'white';
         seconds = seconds > 0 ? --seconds : 59;
 
         minutes = seconds === 59 ? 
@@ -91,6 +97,9 @@ function seniorTaskCountdown() {
         clearInterval(intervalId);
         link.click();
     } else {
+        seniorSpan.style.backgroundColor = 'green';
+        seniorSpan.style.fontSize = '20px';
+        seniorSpan.style.color = 'white';
         seniorCounter--;
         seniorSpan.textContent = seniorCounter;
     }
