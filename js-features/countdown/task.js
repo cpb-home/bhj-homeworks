@@ -76,17 +76,14 @@ function middleTaskCountdown() {
         : hours;
     }
 
-
-
-
     middleSpan.textContent = `
         ${hours<10?'0'+hours:hours}:${minutes<10?'0'+minutes:minutes}:${seconds<10?'0'+seconds:seconds}
     `;
     console.log(`${startHour<10?'0'+startHour:startHour}:${startMin}:${startSec}`);
-    
-
 }
 
+
+// Задание с повышенным уровнем сложности #2 (не обязательно)
 function seniorTaskCountdown() {
     const seniorSpan = document.getElementById('seniorTaskTimer');
     const startTimerValue = Number(seniorSpan.textContent);
