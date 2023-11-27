@@ -4,6 +4,7 @@ class Game {
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
+    this.intervalId = 0;
 
     this.reset();
 
@@ -17,6 +18,10 @@ class Game {
   }
 
   registerEvents() {
+    window.addEventListener('keydown', e => {
+      e.key.toLowerCase() !== this.currentSymbol.textContent.toLowerCase() ? this.fail() : this.success();
+    });
+
     /*
       TODO:
       Написать обработчик события, который откликается
@@ -25,6 +30,20 @@ class Game {
       При неправильном вводе символа - this.fail();
       DOM-элемент текущего символа находится в свойстве this.currentSymbol.
      */
+  }
+
+  counterDown(word) {console.log(1);
+    const counterSpan = document.getElementById('countdown');
+    counterSpan.textContent = word.length;
+    this.intervalId = setInterval(() => {
+      if (counterSpan.textContent <= 0) {
+        clearInterval(this.intervalId);
+        alert('Вы проиграли!');
+        this.reset();
+      } else {
+        counterSpan.textContent = Number(counterSpan.textContent) - 1;
+      }
+    }, 1000);
   }
 
   success() {
@@ -56,6 +75,9 @@ class Game {
     const word = this.getWord();
 
     this.renderWord(word);
+
+    clearInterval(this.intervalId);
+    this.counterDown(word);
   }
 
   getWord() {
