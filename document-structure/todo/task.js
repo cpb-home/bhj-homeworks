@@ -52,12 +52,6 @@ function addCloseListner() {
 }
 
 function getFromLS() {
-  //localStorage.setItem("myCat1", "Tom");
-  //localStorage.setItem("myCat2", "Toma");
-  //let cat = localStorage.getItem("myCat1");
-  //localStorage.removeItem("myCat");
-  //localStorage.clear();
-  console.log(localStorage);
   let entriesLS = Object.entries(localStorage);
   let arrLS = entriesLS.filter(ele => ele[0].includes('task'));
 
@@ -65,9 +59,6 @@ function getFromLS() {
     localStorage.removeItem(entry[0]);
     addTask(entry[1]);
   });
-  
-  console.log(arrLS);
-  console.log(localStorage);
 }
 
 function addToLS() {

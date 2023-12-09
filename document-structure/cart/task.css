@@ -26,6 +26,21 @@ body {
   height: 100px;
   object-fit: contain;
 }
+.cart__product__buttonCont {
+  display: block;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.cart__product__buttonCont button {
+  background-color: red;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+  text-align: center;
+}
 .product {
   display: flex;
   flex-wrap: wrap;
