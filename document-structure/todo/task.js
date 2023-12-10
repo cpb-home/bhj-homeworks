@@ -7,13 +7,11 @@ getFromLS();
 
 addBtn.addEventListener('click', addEvent => {
   addEvent.preventDefault();
-  if (input.value != '') {
+  if (input.value.trim() != '') {
     addTask(input.value);
     input.value = '';
   }
 });
-
-
 
 function addTask(inpVal) {
   const
@@ -28,44 +26,50 @@ function addTask(inpVal) {
   taskTitle.textContent = inpVal;
   taskRemove.innerHTML = '&times;';
 
-  task.appendChild(taskTitle);
-  task.appendChild(taskRemove);
-  tasksList.appendChild(task);
+  task.append(taskTitle);
+  task.append(taskRemove);
+  tasksList.append(task);
 
-  addCloseListner();
+  addCloseListener(task);
   addToLS();
 }
 
-function removeTask(ev, e) {
-  const parent = ev.target.closest('.task');
-  parent.remove();
-  e.removeEventListener('click', ev => removeTask(ev, e));
-  localStorage.removeItem('task' + parent.dataset.lsnum);
+function removeTask(task) {
+  task.querySelector('.task__remove').removeEventListener('click', () => removeTask(task));
+  const tasks = document.querySelectorAll('.task');
+  tasks.forEach((el, index) => {
+    if (el === task) {
+      const arrLS = JSON.parse(localStorage.tasks);
+      arrLS.splice(index, 1); 
+      if (arrLS.length === 0) {
+        localStorage.removeItem('tasks');
+      } else {
+        localStorage.setItem('tasks', JSON.stringify(arrLS));
+      }
+    }
+  });
+  task.remove();
 }
 
-function addCloseListner() {
-  const closeBtns = document.querySelectorAll('.task__remove');
-
-  closeBtns.forEach(e => {
-    e.addEventListener('click', ev => removeTask(ev, e));
-  });
+function addCloseListener(task) {
+  task.querySelector('.task__remove').addEventListener('click', () => removeTask(task));
 }
 
 function getFromLS() {
-  let entriesLS = Object.entries(localStorage);
-  let arrLS = entriesLS.filter(ele => ele[0].includes('task'));
-
-  arrLS.sort().forEach(entry => {
-    localStorage.removeItem(entry[0]);
-    addTask(entry[1]);
-  });
+  if (localStorage.tasks) {
+    const arrLS = JSON.parse(localStorage.tasks);
+    
+    if (arrLS.length > 0) {
+      arrLS.forEach(entry => {
+        addTask(entry);
+      });
+    }
+  }
 }
 
 function addToLS() {
   const allTasks = document.querySelectorAll('.task__title');
-
-  for(let i = 0; i < allTasks.length; i++) {
-    localStorage.setItem('task'+i, allTasks[i].textContent);
-    allTasks[i].parentNode.dataset.lsnum = i;
-  }
+  const tasks = [];
+  allTasks.forEach(el => tasks.push(el.textContent));
+  localStorage.setItem('tasks', JSON.stringify(tasks));
 }

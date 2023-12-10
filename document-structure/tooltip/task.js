@@ -1,5 +1,4 @@
 const links = document.querySelectorAll('.has-tooltip');
-let currentEl;
 
 links.forEach(link => {
   link.addEventListener('click', e => {
