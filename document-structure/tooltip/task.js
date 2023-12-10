@@ -1,31 +1,25 @@
 const links = document.querySelectorAll('.has-tooltip');
-const tip = document.createElement('div');
-tip.className = 'tooltip';
-tip.style.top = '100%';
-tip.style.left = 0;
-tip.style.position = 'absolute';
 let currentEl;
 
-links.forEach(el => {
-  el.insertAdjacentElement('beforeend', tip.cloneNode(true));
-
-  el.addEventListener('click', e => {
+links.forEach(link => {
+  link.addEventListener('click', e => {
     e.preventDefault();
-    const allTips = document.querySelectorAll('.tooltip');
-    allTips.forEach(elem => {
-      elem.classList.remove('tooltip_active');
-    });
+    removeAllTips();
+    const linkPosition = link.getBoundingClientRect();
 
-    const text = el.title;
-    const tipChild = el.querySelector('.tooltip');
-    if (currentEl == el) {
-      tipChild.classList.remove('tooltip_active');
-      currentEl = null;
-    } else {
-      tipChild.classList.add('tooltip_active');
-      currentEl = el;
-    }
-    
-    tipChild.textContent = text;
+    const tip = document.createElement('div');
+    tip.className = 'tooltip';
+    tip.style.top = linkPosition.bottom + 'px';
+    tip.style.left = linkPosition.left + 'px';
+    tip.style.position = 'absolute';
+    tip.textContent = link.title;
+    link.insertAdjacentElement('afterend', tip);
+
+    tip.style.display = "block";
   });
 });
+
+function removeAllTips() {
+  const allTips = document.querySelectorAll('.tooltip');
+  allTips.forEach(el => el.remove());
+}
