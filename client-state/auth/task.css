@@ -45,3 +45,12 @@
   display: block;
   text-align: center;
 }
+
+.welcome_out {
+  display: flex;
+  justify-content: right;
+}
+
+.welcome_out button:hover {
+  background-color: blue;
+}
