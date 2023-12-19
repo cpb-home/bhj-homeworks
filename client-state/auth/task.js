@@ -21,6 +21,8 @@ if (signInBlock.classList.contains('signin_active')) {
     if (checkFields()) {
       auth();
     } else {
+      login.value = '';
+      pass.value = '';
       alert('Должны быть заполнены оба поля');
     }
     
@@ -42,6 +44,8 @@ function auth() {
       LS.setItem('userId', reply.user_id);
       afterAuth(reply.user_id);
     } else {
+      login.value = '';
+      pass.value = '';
       alert('Пользователя с такими данными не существует. Попробуйте снова.');
     }
   };
