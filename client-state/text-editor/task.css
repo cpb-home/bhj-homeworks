@@ -8,3 +8,14 @@ textarea {
   border: 1px solid #e2e2e2;
   box-sizing: border-box;
 }
+
+.cardButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardMessage {
+  font-size: 18px;
+  text-align: center;
+  font-weight: 700;
+}
